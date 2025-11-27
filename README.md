@@ -24,25 +24,23 @@ This is a **PHP-based secure file upload system** that allows users to register,
 ---
 
 ## Folder Structure
-
 secure_upload/
 │
-├── css/ # Stylesheets
-│ └── upload_form.css
-├── js/ # JavaScript files
-│ └── upload_form.js
-├── uploads/ # Uploaded files (empty initially)
-├── db.php # Database connection
-├── signup_form.php # Signup page
-├── signup_process.php # Signup processing
-├── login_form.php # Login page
-├── login_process.php # Login processing
-├── upload_form.php # File upload page
-├── upload_process.php # Upload processing
-├── database.sql # Database creation SQL
+├── css/
+│   └── upload_form.css
+├── js/
+│   └── upload_form.js
+├── uploads/              # Uploaded files stored here
+├── db.php                # Database connection
+├── signup_form.php
+├── signup_process.php
+├── login_form.php
+├── login_process.php
+├── upload_form.php
+├── upload_process.php
+├── database.sql          # SQL file for creating tables
 
 
----
 
 ## Database Setup
 
@@ -51,38 +49,7 @@ secure_upload/
 
 CREATE DATABASE secure_upload;
 
-You can use the provided database.sql file or run the following:
-
-USE secure_upload;
-
--- User table
-CREATE TABLE user (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Uploads table
-CREATE TABLE uploads (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    original_name VARCHAR(255) NOT NULL,
-    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user(id)
-);
-
--- Logs table
-CREATE TABLE logs (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    file_name VARCHAR(255) NOT NULL,
-    ip_address VARCHAR(50) NOT NULL,
-    status VARCHAR(50) NOT NULL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user(id)
-);
-
+You can use the provided database.sql file 
 Update database credentials in db.php
 
 <?php
